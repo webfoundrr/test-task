@@ -1,0 +1,298 @@
+/* =================================================================
+   AURA / FOOTWEAR — Catalog Section
+   Clean Minimalism / High Fashion
+   Pure HTML5 + CSS3 · BEM · CSS Grid · No JS · No frameworks
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   1. DESIGN SYSTEM — edit these tokens to re-brand the section
+   ----------------------------------------------------------------- */
+:root {
+    /* Colors */
+    --color-bg-section: #ffffff;
+    --color-bg-card: #f9f9f9;
+    --color-bg-media: #f5f5f5;
+    --color-accent: #111111;
+    --color-text-main: #1a1a1a;
+    --color-text-muted: #767676;
+    --color-border: #e5e5e5;
+
+    /* Typography */
+    --font-family: "Helvetica Neue", "Inter", "Futura", system-ui, -apple-system, sans-serif;
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --tracking-wide: 0.05em;
+    --tracking-wider: 0.18em;
+
+    /* Spacing scale ("air") */
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1.25rem;
+    --space-lg: 2rem;
+    --space-xl: 4rem;
+    --space-2xl: 6rem;
+
+    /* Layout */
+    --grid-gap: 3rem;
+    --card-radius: 2px;
+    --content-max: 1320px;
+
+    /* Motion — noble, extremely smooth */
+    --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition: all 0.4s var(--ease);
+}
+
+/* -----------------------------------------------------------------
+   2. RESET / BASE
+   ----------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: var(--color-bg-section);
+}
+
+body {
+    font-family: var(--font-family);
+    font-weight: var(--fw-regular);
+    color: var(--color-text-main);
+    background-color: var(--color-bg-section);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+/* -----------------------------------------------------------------
+   3. CATALOG SECTION (Block: catalog)
+   ----------------------------------------------------------------- */
+.catalog {
+    background-color: var(--color-bg-section);
+    padding: var(--space-2xl) var(--space-lg);
+}
+
+.catalog__inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+}
+
+.catalog__header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.catalog__eyebrow {
+    font-size: 0.75rem;
+    font-weight: var(--fw-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+}
+
+.catalog__title {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: var(--fw-light);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    text-wrap: balance;
+}
+
+.catalog__subtitle {
+    margin-top: var(--space-md);
+    font-size: 0.95rem;
+    font-weight: var(--fw-light);
+    color: var(--color-text-muted);
+    letter-spacing: 0.02em;
+}
+
+/* -----------------------------------------------------------------
+   4. GRID — auto-fit columns for a perfect rhythm
+   ----------------------------------------------------------------- */
+.catalog__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--grid-gap);
+}
+
+/* -----------------------------------------------------------------
+   5. PRODUCT CARD (Block: product-card)
+   ----------------------------------------------------------------- */
+.product-card {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Media / image wrapper */
+.product-card__media {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    background-color: var(--color-bg-media);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+}
+
+.product-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+/* Image subtly scales on card hover */
+.product-card:hover .product-card__image {
+    transform: scale(1.04);
+}
+
+/* Quick-add button — hidden, fades up on hover */
+.product-card__add {
+    position: absolute;
+    left: 50%;
+    bottom: var(--space-md);
+    transform: translate(-50%, 1rem);
+    padding: var(--space-sm) var(--space-lg);
+    background-color: var(--color-accent);
+    color: var(--color-bg-section);
+    border: none;
+    border-radius: var(--card-radius);
+    font-size: 0.7rem;
+    font-weight: var(--fw-medium);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.product-card:hover .product-card__add,
+.product-card__add:focus-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.product-card__add:hover {
+    background-color: var(--color-text-main);
+}
+
+/* Body / text content with generous spacing */
+.product-card__body {
+    padding-top: var(--space-md);
+}
+
+.product-card__brand {
+    font-size: 0.7rem;
+    font-weight: var(--fw-regular);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xs);
+}
+
+.product-card__title {
+    font-size: 1rem;
+    font-weight: var(--fw-light);
+    letter-spacing: 0.01em;
+    color: var(--color-text-main);
+    margin-bottom: var(--space-sm);
+    transition: var(--transition);
+}
+
+.product-card:hover .product-card__title {
+    opacity: 0.6;
+}
+
+/* Price block */
+.product-card__price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    font-size: 0.95rem;
+    font-weight: var(--fw-regular);
+}
+
+.product-card__price-current {
+    color: var(--color-text-main);
+}
+
+.product-card__price-old {
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--color-text-muted);
+    text-decoration-thickness: 1px;
+    font-weight: var(--fw-light);
+}
+
+/* -----------------------------------------------------------------
+   6. RESPONSIVENESS (Desktop-first)
+   auto-fit handles most cases; these refine the tile rhythm
+   ----------------------------------------------------------------- */
+
+/* Tablet — 2 columns */
+@media (max-width: 900px) {
+    :root {
+        --grid-gap: 2rem;
+    }
+    .catalog {
+        padding: var(--space-xl) var(--space-lg);
+    }
+    .catalog__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .catalog__header {
+        margin-bottom: var(--space-xl);
+    }
+}
+
+/* Mobile — neat 2-column tile, no horizontal scroll */
+@media (max-width: 560px) {
+    :root {
+        --grid-gap: 1rem;
+    }
+    .catalog {
+        padding: var(--space-xl) var(--space-md);
+    }
+    .product-card__title {
+        font-size: 0.9rem;
+    }
+    /* Touch devices have no hover: keep the quick-add visible */
+    .product-card__add {
+        position: static;
+        transform: none;
+        opacity: 1;
+        width: 100%;
+        margin-top: var(--space-sm);
+    }
+}
+
+/* Very small screens — single column */
+@media (max-width: 380px) {
+    .catalog__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
